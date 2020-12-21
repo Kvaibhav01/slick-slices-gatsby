@@ -7,6 +7,14 @@
           "options": {}
         },
         {
+          "name": "babel-plugin-styled-components",
+          "stage": "develop",
+          "options": {
+            "plugins": [],
+            "ssr": false
+          }
+        },
+        {
           "name": "/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
           "options": {}
         },
@@ -49,6 +57,14 @@
         {
           "name": "/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
+        },
+        {
+          "name": "babel-plugin-styled-components",
+          "stage": "develop-html",
+          "options": {
+            "plugins": [],
+            "ssr": false
+          }
         }
       ],
       "presets": [
@@ -81,6 +97,14 @@
         {
           "name": "/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
+        },
+        {
+          "name": "babel-plugin-styled-components",
+          "stage": "build-html",
+          "options": {
+            "plugins": [],
+            "ssr": true
+          }
         }
       ],
       "presets": [
@@ -113,6 +137,14 @@
         {
           "name": "/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
+        },
+        {
+          "name": "babel-plugin-styled-components",
+          "stage": "build-javascript",
+          "options": {
+            "plugins": [],
+            "ssr": true
+          }
         }
       ],
       "presets": [

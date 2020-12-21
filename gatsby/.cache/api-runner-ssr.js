@@ -1,4 +1,10 @@
 var plugins = [{
+      plugin: require('/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
+      options: {"plugins":[]},
+    },{
+      plugin: require('/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/node_modules/gatsby-source-sanity/gatsby-ssr'),
+      options: {"plugins":[],"projectId":"n8nnj9bd","dataset":"production","watchmode":true,"token":"skyAdflFOibWF9RTBmhYyhnDka4pxEaCFcvMVdAe91o0DwFFok48MyGNJMV9x9rXJCU53DPIvP9Rd6l2IS3jBPzerwTsxhtGNo2CbjQD3ohxo3PKEYMmfp3NMnwnM4hf8X6Skrt13AKe3WZlB6IyESb6pgPxEadO8pMpmiAVKQX29hgSxQAG"},
+    },{
       plugin: require('/Users/vaibhavkhulbe/Web Projects/slick-slices-gatsby/gatsby/gatsby-ssr'),
       options: {"plugins":[]},
     }]
