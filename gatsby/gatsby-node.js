@@ -30,8 +30,38 @@ export async function turnPizzasIntoPages({graphql, actions}) {
   })
 }
 
+async function turnToppingsIntoPages({graphql, actions}) {
+  // 1. Get the template
+  const toppingTemplate = path.resolve('./src/pages/pizzas.js')
+  // 2. Query all toppings
+  const { data } = await graphql(`
+    query {
+      toppings: allSanityTopping {
+        nodes {
+          name,
+          id
+        }
+      }
+    }
+  `)
+  // 3. Create pages for each topping
+  data.toppings.nodes.forEach(topping => {
+    actions.createPage({
+      path: `topping/${topping.name}`,
+      component: toppingTemplate,
+      context: {
+        topping: topping.name,
+        toppingRegex: `/${topping.name}/i`
+      }
+    })
+  })
+}
+
 //? `createPages` is a Gatsby extension point/Hook which tells plugins to add pages.
 export async function createPages(params) {
-  // Create pages dynamically
-  await turnPizzasIntoPages(params)
+  // Create pages dynamically and this will concurrently at the same time
+  await Promise.all([
+    turnPizzasIntoPages(params),
+    turnToppingsIntoPages(params)
+  ])
 }
