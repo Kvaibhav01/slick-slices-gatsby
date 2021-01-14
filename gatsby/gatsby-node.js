@@ -1,4 +1,5 @@
 import path from 'path'
+import fetch from 'isomorphic-fetch'
 
 export async function turnPizzasIntoPages({graphql, actions}) {
   // 1. Get a template for this page
@@ -55,6 +56,48 @@ async function turnToppingsIntoPages({graphql, actions}) {
       }
     })
   })
+}
+
+async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
+  // 1. Fetch a list of beers
+  const res = await fetch('https://api.sampleapis.com/beers/ale')
+  const beers = await res.json()
+
+  // 2. Loop over each one
+  for (const beer of beers) {
+    // Create a node for each beer. This is where the data for our new `node` in GraphQL will be.
+    const nodeContent = JSON.stringify()
+    // This is the metadata of our node.
+    const nodeMeta = {
+      // `createNodeId` allows us to generate a random ID number.
+      id: createNodeId(`beer-${beer.name}`),
+      // We don't have a relational data here like `parentBeer` so we leave it as `null`.
+      parent: null,
+      // Same thing with `children`.
+      children: [],
+      // The internal sub-object scheme of our data.
+      internal: {
+        // Specify query name. GraphQL will automatically add `all` in front of it.
+        type: 'Beer',
+        // What type of data we're pulling in from the beer API.
+        mediaType: 'application/json',
+        // `contentDigest` is to know whether data has changed or not.
+        contentDigest: createContentDigest(beer)
+      }
+    }
+    // 3. Create a node for that beer
+    actions.createNode({
+      ...beer,
+      ...nodeMeta,
+      ...nodeContent
+    })
+  }
+}
+
+// ? `sourceNodes` tells Gatsby plugins to source `nodes` for Graphql. We can make new GraphQL nodes.
+export async function sourceNodes(params) {
+  // Fetch a list of beers and source them on our own GraphQL API
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)])
 }
 
 //? `createPages` is a Gatsby extension point/Hook which tells plugins to add pages.

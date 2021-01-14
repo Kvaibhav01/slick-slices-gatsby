@@ -18,7 +18,7 @@ const NavStyles = styled.nav`
     margin-top: -6rem;
 
     display: grid;
-    grid-template-columns: 1fr 1fr auto 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr auto 1fr 1fr 1fr;
     gap: 2rem;
     align-items: center;
   }
@@ -59,6 +59,9 @@ export default function Nav() {
       <NavStyles>
         <ul>
           <li>
+            <Link to="/beers">Beers!</Link>
+          </li>
+          <li>
             <Link to="/">Hot Now</Link>
           </li>
           <li>
@@ -74,6 +77,9 @@ export default function Nav() {
           </li>
           <li>
             <Link to="/order">Order Ahead!</Link>
+          </li>
+          <li>
+            <Link to="/beers">Beers!</Link>
           </li>
         </ul>
       </NavStyles>
