@@ -6,7 +6,7 @@ const BeerGridStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-`
+`;
 
 const SingleBeerStyles = styled.div`
   border: 1px solid var(--grey);
@@ -21,7 +21,7 @@ const SingleBeerStyles = styled.div`
     align-items: center;
     font-size: 10px;
   }
-`
+`;
 
 export default function BeersPage({ data }) {
   return (
@@ -29,7 +29,7 @@ export default function BeersPage({ data }) {
       <h2>We have {data.beers.nodes.length} beers available. Dine in only.</h2>
       <BeerGridStyles>
         {data.beers.nodes.map((beer) => {
-          const rating = Math.round(beer.rating.average)
+          const rating = Math.round(beer.rating.average);
           return (
             <SingleBeerStyles key={beer.id}>
               <img src={beer.image} alt={beer.name} />
@@ -37,13 +37,13 @@ export default function BeersPage({ data }) {
               {beer.price}
               <p title={`${rating} out of 5 stars`}>
                 {`⭐️`.repeat(rating)}
-                <span style={{filter: `grayscale(100%)`}}>
+                <span style={{ filter: `grayscale(100%)` }}>
                   {`⭐️`.repeat(5 - rating)}
                 </span>
                 <span>({beer.rating.reviews})</span>
               </p>
             </SingleBeerStyles>
-          )
+          );
         })}
       </BeerGridStyles>
     </>
@@ -52,16 +52,16 @@ export default function BeersPage({ data }) {
 
 export const query = graphql`
   query {
-  beers: allBeer {
-    nodes {
-      name
-      id
-      price
-      rating {
-        average
-        reviews
+    beers: allBeer {
+      nodes {
+        name
+        id
+        price
+        rating {
+          average
+          reviews
+        }
       }
     }
   }
-}
-`
+`;
