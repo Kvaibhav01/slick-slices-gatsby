@@ -94,6 +94,46 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
   }
 }
 
+
+async function turnSlicemastersIntoPages({ graphql, actions }) {
+  // 1. Query all Slicemasters
+  const { data } = await graphql(`
+    query {
+      sliceMasters: allSanityPerson {
+        totalCount
+        nodes {
+          name
+          id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `)
+
+  //TODO 2. Turn each Slicemaster into their own page
+
+  // 3. Figure out how many pages are there based on the number of Slicemasters and how many per page
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE)
+  const pageCount = Math.ceil(data.sliceMasters.totalCount / pageSize)
+
+  // 4. Loop from 1 to n and create pages for each of them
+  Array.from({ length: pageCount }).forEach((_, i) => {
+    actions.createPage({
+      path: `/slicemasters/${i + 1}`,
+      component: path.resolve('./src/pages/slicemasters.js'),
+
+      //? This data is passed to the template when we create it
+      context: {
+        skip: i * pageSize,
+        currentPage: i + 1,
+        pageSize
+      }
+    })
+  })
+}
+
 // ? `sourceNodes` tells Gatsby plugins to source `nodes` for Graphql. We can make new GraphQL nodes.
 export async function sourceNodes(params) {
   // Fetch a list of beers and source them on our own GraphQL API
@@ -105,6 +145,7 @@ export async function createPages(params) {
   // Create pages dynamically and this will concurrently at the same time
   await Promise.all([
     turnPizzasIntoPages(params),
-    turnToppingsIntoPages(params)
+    turnToppingsIntoPages(params),
+    turnSlicemastersIntoPages(params)
   ])
 }
