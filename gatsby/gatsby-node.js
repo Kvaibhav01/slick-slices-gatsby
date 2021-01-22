@@ -1,6 +1,7 @@
 import path from 'path'
 import fetch from 'isomorphic-fetch'
 
+// Pizza Page Function
 export async function turnPizzasIntoPages({graphql, actions}) {
   // 1. Get a template for this page
   const pizzaTemplate = path.resolve('./src/templates/Pizza.js')
@@ -31,6 +32,7 @@ export async function turnPizzasIntoPages({graphql, actions}) {
   })
 }
 
+// Pizza Toppings Function
 async function turnToppingsIntoPages({graphql, actions}) {
   // 1. Get the template
   const toppingTemplate = path.resolve('./src/pages/pizzas.js')
@@ -58,6 +60,8 @@ async function turnToppingsIntoPages({graphql, actions}) {
   })
 }
 
+
+// Beers Page Function
 async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
   // 1. Fetch a list of beers
   const res = await fetch('https://api.sampleapis.com/beers/ale')
@@ -94,7 +98,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
   }
 }
 
-
+// Pagination function
 async function turnSlicemastersIntoPages({ graphql, actions }) {
   // 1. Query all Slicemasters
   const { data } = await graphql(`
@@ -142,7 +146,7 @@ export async function sourceNodes(params) {
 
 //? `createPages` is a Gatsby extension point/Hook which tells plugins to add pages.
 export async function createPages(params) {
-  // Create pages dynamically and this will concurrently at the same time
+  // Create pages dynamically and concurrently at the same time
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
