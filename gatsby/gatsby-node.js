@@ -1,4 +1,4 @@
-import path from 'path'
+import path, { resolve } from 'path'
 import fetch from 'isomorphic-fetch'
 
 // Pizza Page Function
@@ -116,7 +116,17 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
     }
   `)
 
-  //TODO 2. Turn each Slicemaster into their own page
+  // 2. Turn each Slicemaster into their own page
+  data.sliceMasters.nodes.forEach(slicemaster => {
+    actions.createPage({
+      component: resolve('./src/templates/Slicemaster.js'),
+      path: `/slicemaster/${slicemaster.slug.current}`,
+      context: {
+        name: slicemaster.person,
+        slug: slicemaster.slug.current
+      }
+    })
+  })
 
   // 3. Figure out how many pages are there based on the number of Slicemasters and how many per page
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE)
