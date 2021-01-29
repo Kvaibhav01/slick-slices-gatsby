@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import React from 'react'
 import styled from 'styled-components'
+import SEO from '../components/SEO'
 
 const PizzaGrid = styled.div`
   display: grid;
@@ -11,6 +12,10 @@ const PizzaGrid = styled.div`
 
 export default function SinglePizzaPage({ data: { pizza }}) {
   return (
+    <>
+    {/* We add '?' so that it checks whether 'pizza.image' exists, then 'pizza.image.asset' exists & so on.
+    This will make sure to render the JSX of image isn't found or is broken */}
+    <SEO title={pizza.name} image={pizza.image?.asset?.fluid?.src} />
     <PizzaGrid>
       <Img fluid={pizza.image.asset.fluid} />
       <div>
@@ -20,6 +25,7 @@ export default function SinglePizzaPage({ data: { pizza }}) {
         </ul>
       </div>
     </PizzaGrid>
+    </>
   )
 }
 
