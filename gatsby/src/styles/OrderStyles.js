@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const OrderStyles = styled.form`
   display: grid;
@@ -13,9 +13,14 @@ const OrderStyles = styled.form`
     max-height: 600px;
     overflow: auto;
 
-    &.menu, &.order {
+    &.menu,
+    &.order {
       grid-column: span 1;
     }
+  }
+
+  .mapleSyrup {
+    display: none;
   }
 
   /* @media (max-width: 900px) {
@@ -23,6 +28,6 @@ const OrderStyles = styled.form`
       grid-column: span 2;
     }
   } */
-`
+`;
 
-export default OrderStyles
+export default OrderStyles;
