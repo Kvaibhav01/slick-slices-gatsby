@@ -1,5 +1,21 @@
 import { useEffect, useState } from 'react';
 
+// Fake VSCode to think that we are actually importing GraphQL. This is done for formatting.
+const gql = String.raw;
+const deets = `
+    name
+    _id
+    image {
+      asset {
+        url
+        metadata {
+          # lqip is Low Quality Image Placeholder
+          lqip
+        }
+      }
+    }
+`;
+
 export default function useLatestData() {
   const [hotSlices, setHotSlices] = useState();
   const [sliceMasters, setSliceMasters] = useState();
@@ -13,18 +29,18 @@ export default function useLatestData() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `
+        query: gql`
           query {
-  StoreSettings(id: "downtown") {
-    name
-    slicemaster {
-      name
-    }
-    hotSlices {
-      name
-    }
-  }
-}
+            StoreSettings(id: "downtown") {
+              name
+              slicemaster {
+                ${deets}
+              }
+              hotSlices {
+                ${deets}
+              }
+            }
+          }
         `,
       }),
     })
