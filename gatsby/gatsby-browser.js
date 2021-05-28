@@ -11,5 +11,5 @@ export function wrapPageElement({ element, props }) {
 }
 
 export function wrapRootElement({ element }) {
-  return <OrderProvider>{element}</OrderProvider>
+  return <OrderProvider>{element}</OrderProvider>;
 }
