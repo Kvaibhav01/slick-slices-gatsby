@@ -23,11 +23,14 @@ const OrderStyles = styled.form`
     display: none;
   }
 
-  /* @media (max-width: 900px) {
-    fieldset.menu, fieldset.order {
+  @media (max-width: 900px) {
+    fieldset.menu,
+    fieldset.order {
       grid-column: span 2;
     }
-  } */
+
+    grid-template-columns: 1fr;
+  }
 `;
 
 export default OrderStyles;

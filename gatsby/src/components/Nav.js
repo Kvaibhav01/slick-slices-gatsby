@@ -38,6 +38,7 @@ const NavStyles = styled.nav`
   }
 
   a {
+    display: block;
     font-size: 3rem;
     text-decoration: none;
 
@@ -45,9 +46,39 @@ const NavStyles = styled.nav`
       color: var(--red);
     }
 
+    @media (max-width: 800px) {
+      font-size: 2rem;
+    }
+
     /* &[aria-current='page'] {
       color: var(--red);
     } */
+  }
+
+  @media (max-width: 600px) {
+    --columns: 3;
+    margin-bottom: 5rem;
+    border-bottom: 2px solid var(--grey);
+    padding-bottom: 2rem;
+
+    ul {
+      grid-template-columns: repeat(var(--columns), 1fr);
+      grid-template-rows: auto auto;
+      justify-items: center;
+    }
+
+    .logo-item {
+      order: 0;
+      grid-column: 1 / -1;
+    }
+
+    .logo {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    --columns: 2;
   }
 `;
 
@@ -57,27 +88,27 @@ export default function Nav() {
       <NavStyles>
         <ul>
           <li>
-            <Link to="/beers">Beers!</Link>
+            <Link to='/beers'>Beers!</Link>
           </li>
           <li>
-            <Link to="/">Hot Now</Link>
+            <Link to='/'>Hot Now</Link>
           </li>
           <li>
-            <Link to="/pizzas/">Pizza Menu</Link>
+            <Link to='/pizzas/'>Pizza Menu</Link>
           </li>
-          <li>
-            <Link to="/">
-              <Logo classname="logo" />
+          <li className='logo-item'>
+            <Link to='/'>
+              <Logo className='logo' />
             </Link>
           </li>
           <li>
-            <Link to="/slicemasters">SliceMasters</Link>
+            <Link to='/slicemasters'>SliceMasters</Link>
           </li>
           <li>
-            <Link to="/order">Order Ahead!</Link>
+            <Link to='/order'>Order Ahead!</Link>
           </li>
           <li>
-            <Link to="/beers">Beers!</Link>
+            <Link to='/beers'>Beers!</Link>
           </li>
         </ul>
       </NavStyles>

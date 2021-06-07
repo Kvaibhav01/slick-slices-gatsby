@@ -1,13 +1,13 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env' })
+dotenv.config({ path: '.env' });
 
 export default {
   siteMetadata: {
     title: `Slicks Slices`,
     siteUrl: `https://gatsby.pizza`,
     description: `The best pizza place in Hamilton!`,
-    twitter: `@vaibhav_khulbe`
+    twitter: `@vaibhav_khulbe`,
   },
   plugins: [
     // All the global plugins we need
@@ -22,8 +22,8 @@ export default {
         projectId: `n8nnj9bd`,
         dataset: `production`,
         watchmode: true,
-        token: process.env.SANITY_TOKEN
-      }
-    }
-  ]
-}
+        token: process.env.SANITY_TOKEN,
+      },
+    },
+  ],
+};
