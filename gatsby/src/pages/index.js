@@ -7,10 +7,12 @@ import useLatestData from '../utils/useLatestData';
 function CurrentlySlicing({ sliceMasters }) {
   return (
     <div>
-      <h2 className="center">
-        <span className="mark tilt">Slicemasters On</span>
+      <h2 className='center'>
+        <span className='mark tilt'>Slicemasters On</span>
       </h2>
-      <p>Standing by, ready to 'slice' you up 😈</p>
+      <p style={{ marginBottom: '4rem' }}>
+        Standing by, ready to 'slice' you up 😈
+      </p>
       {!sliceMasters && <LoadingGrid count={4} />}
       {sliceMasters && !sliceMasters?.length && (
         <p>No one is working right now</p>
@@ -23,10 +25,10 @@ function CurrentlySlicing({ sliceMasters }) {
 function HotSlices({ hotSlices }) {
   return (
     <div>
-      <h2 className="center">
-        <span className="mark tilt">Hot Slices On</span>
+      <h2 className='center'>
+        <span className='mark tilt'>Hot Slices On</span>
       </h2>
-      <p>Come on by, 'buy' the slice 😌</p>
+      <p style={{ marginBottom: '4rem' }}>Come on by, 'buy' the slice 😌</p>
       {!hotSlices && <LoadingGrid count={4} />}
       {hotSlices && !hotSlices?.length && <p>Nothin' in the case...</p>}
       {hotSlices?.length && <ItemGrid items={hotSlices} />}
@@ -37,9 +39,9 @@ function HotSlices({ hotSlices }) {
 export default function HomePage() {
   const { sliceMasters, hotSlices } = useLatestData();
   return (
-    <div className="center">
-      <h1>The Best Pizza Downtown!</h1>
-      <p>Open 11AM to 11PM Every Single Day</p>
+    <div className='center'>
+      <h1>🍕 The Best Pizza Downtown! 🍕</h1>
+      <p style={{ marginBottom: '5rem' }}>Open 11AM to 11PM Every Single Day</p>
       <HomePageGrid>
         <CurrentlySlicing sliceMasters={sliceMasters} />
         <HotSlices hotSlices={hotSlices} />

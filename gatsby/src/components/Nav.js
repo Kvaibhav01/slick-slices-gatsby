@@ -44,15 +44,12 @@ const NavStyles = styled.nav`
 
     &:hover {
       color: var(--red);
+      transform: rotate(-1deg);
     }
 
     @media (max-width: 800px) {
       font-size: 2rem;
     }
-
-    /* &[aria-current='page'] {
-      color: var(--red);
-    } */
   }
 
   @media (max-width: 600px) {

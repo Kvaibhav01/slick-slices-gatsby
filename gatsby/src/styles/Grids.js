@@ -26,6 +26,8 @@ export const ItemStyles = styled.div`
   img {
     height: auto;
     font-size: 0;
+    border-radius: 5px;
+    border: 2px dashed var(--yellow);
   }
 
   p {
