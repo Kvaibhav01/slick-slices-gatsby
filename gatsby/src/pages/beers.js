@@ -1,5 +1,5 @@
-import React from 'react';
 import { graphql } from 'gatsby';
+import React from 'react';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 
@@ -10,9 +10,10 @@ const BeerGridStyles = styled.div`
 `;
 
 const SingleBeerStyles = styled.div`
-  border: 1px solid var(--grey);
+  border: 2px dashed var(--yellow);
   padding: 2rem;
   text-align: center;
+  border-radius: 5px;
   img {
     width: 100%;
     height: 200px;
@@ -22,13 +23,26 @@ const SingleBeerStyles = styled.div`
     align-items: center;
     font-size: 10px;
   }
+
+  &:hover {
+    background-color: var(--yellow);
+    transition: all 0.3s;
+
+    .price {
+      background-color: white;
+    }
+
+    img {
+      transform: scale(1.1);
+    }
+  }
 `;
 
 export default function BeersPage({ data }) {
   return (
     <>
       <SEO title={`Beers! We have ${data.beers.nodes.length} in stock`} />
-      <h2 className="center">
+      <h2 className='center' style={{ marginBottom: '5rem' }}>
         We have {data.beers.nodes.length} Beers Available. Dine in Only!
       </h2>
       <BeerGridStyles>
@@ -38,8 +52,10 @@ export default function BeersPage({ data }) {
           return (
             <SingleBeerStyles key={beer.id}>
               <img src={beer.image} alt={beer.name} />
-              <h3>{beer.name}</h3>
-              {beer.price}
+              <h3 style={{ margin: '2rem 0' }}>{beer.name}</h3>
+              <p class='price mark' style={{ padding: '0.5rem' }}>
+                {beer.price}
+              </p>
               <p title={`${rating} out of 5 stars`}>
                 {`⭐`.repeat(rating)}
                 <span style={{ filter: `grayscale(100%)` }}>
