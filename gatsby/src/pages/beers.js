@@ -26,7 +26,7 @@ const SingleBeerStyles = styled.div`
 
   &:hover {
     background-color: var(--yellow);
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 
     .price {
       background-color: white;

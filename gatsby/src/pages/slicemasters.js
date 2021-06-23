@@ -7,7 +7,7 @@ import SEO from '../components/SEO';
 
 const SliceMasterGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 2rem;
 `;
 
@@ -53,19 +53,24 @@ export default function SliceMastersPage({ data, pageContext }) {
         totalCount={data.sliceMasters.totalCount}
         currentPage={pageContext.currentPage || 1}
         skip={pageContext.skip}
-        base='/slicemasters'
+        base="/slicemasters"
       />
       <SliceMasterGrid>
         {sliceMasters.map((person) => (
-          <SliceMasterStyles key={person.id}>
-            <Link to={`/slicemaster/${person.slug.current}`}>
+          <Link
+            to={`/slicemaster/${person.slug.current}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <SliceMasterStyles key={person.id}>
               <h2>
-                <span className='mark'>{person.name}</span>
+                <span className="mark" style={{ padding: '.5rem' }}>
+                  {person.name}
+                </span>
               </h2>
-            </Link>
-            <Img fluid={person.image.asset.fluid} />
-            <p className='description'>{person.description}</p>
-          </SliceMasterStyles>
+              <Img fluid={person.image.asset.fluid} />
+              <p className="description">{person.description}</p>
+            </SliceMasterStyles>
+          </Link>
         ))}
       </SliceMasterGrid>
     </>

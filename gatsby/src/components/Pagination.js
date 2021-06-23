@@ -29,6 +29,11 @@ const PaginationStyles = styled.div`
     }
   }
 
+  a:hover {
+    color: var(--red);
+    transform: rotate(-2deg);
+  }
+
   @media (max-width: 800px) {
     .word {
       display: none;
@@ -53,11 +58,11 @@ export default function Pagination({
   return (
     <PaginationStyles>
       <Link
-        title='Previous page'
+        title="Previous page"
         disabled={!hasPrevPage}
         to={`${base}/${prevPage}`}
       >
-        ← <span className='word'>Prev</span>
+        ← <span className="word">Prev</span>
       </Link>
       {Array.from({ length: totalPages }).map((_, i) => (
         <Link
@@ -69,11 +74,11 @@ export default function Pagination({
         </Link>
       ))}
       <Link
-        title='Next page'
+        title="Next page"
         disabled={!hasNextPage}
         to={`${base}/${nextPage}`}
       >
-        <span className='word'>Next</span>→
+        <span className="word">Next</span>→
       </Link>
     </PaginationStyles>
   );
